@@ -1,0 +1,12 @@
+[deps]
+ClickHouseClient = "24542bac-3c63-457b-bf79-aef49e8373b4"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+DocumenterVitepress = "4710194d-e776-4893-9690-8d956a29c365"
+Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
+NodeJS = "2bd173c7-0d6d-553b-b6af-13a54713934c"
+
+[compat]
+Documenter = "1"
+DocumenterVitepress = "0.2.4"
+Literate = "2"
+NodeJS = "2"

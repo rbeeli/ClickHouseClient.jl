@@ -1,0 +1,22 @@
+docs_dir := justfile_directory()
+host := env_var_or_default("DOCS_HOST", "127.0.0.1")
+port := env_var_or_default("DOCS_PORT", "8000")
+vitepress := env_var_or_default("VITEPRESS_BIN", "./node_modules/.bin/vitepress")
+
+default:
+    @just --justfile "{{docs_dir}}/justfile" --list
+
+instantiate:
+    julia --project="{{docs_dir}}" -e 'using Pkg; Pkg.instantiate()'
+
+build:
+    julia --project="{{docs_dir}}" "{{docs_dir}}/make.jl"
+
+serve: build
+    cd "{{docs_dir}}" && "{{vitepress}}" preview build/.documenter --host "{{host}}" --port "{{port}}"
+
+dev: build
+    cd "{{docs_dir}}" && "{{vitepress}}" dev build/.documenter --host "{{host}}" --port "{{port}}"
+
+clean:
+    rm -rf "{{docs_dir}}/build" "{{docs_dir}}/src/examples/gen"
